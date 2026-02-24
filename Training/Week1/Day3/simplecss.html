@@ -1,0 +1,77 @@
+<!-- simple responsive design based mobile first website with css with menus Home Products , contact us -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Design</title>
+    <style>
+        body{
+            background-color: beige;
+        }
+        .X {
+            background-color:aquamarine;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .Y {
+            background-color:skyblue;
+            padding: 20px;
+            border: 10px;
+            margin: 5px;
+        }
+
+        .Z {
+            background-color:lightgrey;
+            padding: auto;
+            text-align: center; 
+        }
+
+        .A {
+            text-align: center;
+            background-color:beige;
+            display: block;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .B {
+            background-color:lightblue;
+            padding: 20px;
+            border: 10px;
+            margin: 5px;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="X">
+            <h1>HBK Clothing Store</h1>
+            <br>
+            <div class="Y">Home</div>
+            <div class="Y">Menu</div>
+            <a href="#Products"><div class="Y">Products</div></a>
+            <a href="#Contact_Us"><div class="Y">Contact Us</div></a>
+        </div>
+
+        <div class="A" id="Products">
+            <h2> Products</h2>
+            <div class="B">Cotton</div>
+            <div class="B">Silk</div>
+            <div class="B">Denim</div>
+            <div class="B">Wool</div>
+            <div class="B">Lenin</div>
+            <div class="B">Polyester</div>
+        </div>
+    <footer id="Contact_Us">
+    <div class="Z">
+    <h3>Contact Us</h3>
+    <p>Email: XYZ@abc.com</p>
+    <p>Phone: +91 XXXXX XXXXX</p>
+    <p>Address: Door No.: XXX, Y Street,XY City, XYZ. Pincode-XXX XXX</p>
+    </footer>
+    </div>
+    </body>
+</html>
