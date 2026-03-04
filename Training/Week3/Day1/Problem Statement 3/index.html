@@ -1,0 +1,123 @@
+<!--jQuery_Day11_Hands_on_Problem_Statement3_HarishBabuKaveri-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cart Counter</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #e6cba8;
+    }
+
+    .cart {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    /* ✅ Make products horizontal */
+    #product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product {
+        background: #ddd;
+        padding: 20px;
+        width: 45%;   /* 2 per row */
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Cart Counter -->
+    <div class="cart">
+        🛒 Cart Items: <span id="cart-count">0</span>
+    </div>
+
+    <!-- Product List -->
+    <div id="product-list">
+
+        <div class="product">
+            <h3>Mobile Phone</h3>
+            <button class="add-btn" data-added="false">Add to Cart</button>
+            <span class="added-msg"></span>
+        </div>
+
+        <div class="product">
+            <h3>Laptop</h3>
+            <button class="add-btn" data-added="false">Add to Cart</button>
+            <span class="added-msg"></span>
+        </div>
+
+        <div class="product">
+            <h3>Hard Disk</h3>
+            <button class="add-btn" data-added="false">Add to Cart</button>
+            <span class="added-msg"></span>
+        </div>
+
+        <div class="product">
+            <h3>Mouse</h3>
+            <button class="add-btn" data-added="false">Add to Cart</button>
+            <span class="added-msg"></span>
+        </div>
+
+    </div>
+
+    <script>
+$(document).ready(function () {
+
+    let count = 0;
+
+    // Event Delegation
+    $("#product-list").on("click", ".add-btn", function () {
+
+        let isAdded = $(this).attr("data-added");
+
+        if (isAdded !== "true") {
+
+            // ADD TO CART
+            count++;
+            $("#cart-count").text(count);
+
+            $(this).text("Remove");
+            $(this).attr("data-added", "true");
+
+            $(this).siblings(".added-msg").text("✔ Added to cart");
+
+        } else {
+
+            // REMOVE FROM CART
+            count--;
+
+            // Prevent negative value
+            if (count < 0) count = 0;
+
+            $("#cart-count").text(count);
+
+            $(this).text("Add to Cart");
+            $(this).attr("data-added", "false");
+
+            $(this).siblings(".added-msg").text("");
+        }
+
+    });
+
+});
+</script>
+
+</body>
+</html>
