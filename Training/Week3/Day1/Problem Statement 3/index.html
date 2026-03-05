@@ -1,123 +1,127 @@
 <!--jQuery_Day11_Hands_on_Problem_Statement3_HarishBabuKaveri-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Cart Counter</title>
 
-    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        background-color: #e6cba8;
-    }
+        body {
+            font-family: Arial;
+            text-align: center;
+            background:honeydew;
+        }
 
-    .cart {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
+        .cart {
+            font-size: 20px;
+            margin: 20px;
+        }
 
-    /* ✅ Make products horizontal */
-    #product-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
 
-    .product {
-        background: #ddd;
-        padding: 20px;
-        width: 45%;   /* 2 per row */
-        box-sizing: border-box;
-    }
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 180px;
+            box-shadow: 0 0 5px gray;
+        }
 
-    button {
-        padding: 6px 12px;
-        cursor: pointer;
-    }
+        button {
+            padding: 6px 12px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .msg {
+            color: green;
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body>
 
-    <!-- Cart Counter -->
+    <h2>E-Commerce Store</h2>
+
     <div class="cart">
-        🛒 Cart Items: <span id="cart-count">0</span>
+        🛒 Cart Items: <span id="cartCount">0</span>
     </div>
 
-    <!-- Product List -->
-    <div id="product-list">
+    <div class="products">
 
         <div class="product">
-            <h3>Mobile Phone</h3>
-            <button class="add-btn" data-added="false">Add to Cart</button>
-            <span class="added-msg"></span>
+            <h4>Laptop</h4>
+            <p>₹25,000</p>
+            <button class="addCart">Add to Cart</button>
+            <button class="removeCart" disabled>Remove</button>
+            <p class="msg"></p>
         </div>
 
         <div class="product">
-            <h3>Laptop</h3>
-            <button class="add-btn" data-added="false">Add to Cart</button>
-            <span class="added-msg"></span>
+            <h4>Mobile</h4>
+            <p>₹10,000</p>
+            <button class="addCart">Add to Cart</button>
+            <button class="removeCart" disabled>Remove</button>
+            <p class="msg"></p>
         </div>
 
         <div class="product">
-            <h3>Hard Disk</h3>
-            <button class="add-btn" data-added="false">Add to Cart</button>
-            <span class="added-msg"></span>
+            <h4>Headphones</h4>
+            <p>₹500</p>
+            <button class="addCart">Add to Cart</button>
+            <button class="removeCart" disabled>Remove</button>
+            <p class="msg"></p>
         </div>
 
         <div class="product">
-            <h3>Mouse</h3>
-            <button class="add-btn" data-added="false">Add to Cart</button>
-            <span class="added-msg"></span>
+            <h4>Smart Watch</h4>
+            <p>₹1,200</p>
+            <button class="addCart">Add to Cart</button>
+            <button class="removeCart" disabled>Remove</button>
+            <p class="msg"></p>
         </div>
 
     </div>
 
     <script>
-$(document).ready(function () {
 
-    let count = 0;
+        let cart = 0;
 
-    // Event Delegation
-    $("#product-list").on("click", ".add-btn", function () {
+        // Add to Cart
+        $(".addCart").click(function () {
 
-        let isAdded = $(this).attr("data-added");
+            cart++;
+            $("#cartCount").text(cart);
 
-        if (isAdded !== "true") {
+            $(this).prop("disabled", true);
+            $(this).siblings(".removeCart").prop("disabled", false);
 
-            // ADD TO CART
-            count++;
-            $("#cart-count").text(count);
+            $(this).siblings(".msg").text("Added to Cart ✓");
 
-            $(this).text("Remove");
-            $(this).attr("data-added", "true");
+        });
 
-            $(this).siblings(".added-msg").text("✔ Added to cart");
+        // Remove from Cart
+        $(".removeCart").click(function () {
 
-        } else {
+            cart--;
+            $("#cartCount").text(cart);
 
-            // REMOVE FROM CART
-            count--;
+            $(this).prop("disabled", true);
+            $(this).siblings(".addCart").prop("disabled", false);
 
-            // Prevent negative value
-            if (count < 0) count = 0;
+            $(this).siblings(".msg").text("Removed from Cart");
 
-            $("#cart-count").text(count);
+        });
 
-            $(this).text("Add to Cart");
-            $(this).attr("data-added", "false");
-
-            $(this).siblings(".added-msg").text("");
-        }
-
-    });
-
-});
-</script>
-
+    </script>
 </body>
 </html>
+
